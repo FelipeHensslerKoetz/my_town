@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_27_120205) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_27_120955) do
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title"
+    t.string "category"
+    t.string "description"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -30,5 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_120205) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "posts", "users"
   add_foreign_key "users", "roles"
 end

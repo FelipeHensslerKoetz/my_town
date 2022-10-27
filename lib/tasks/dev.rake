@@ -28,6 +28,16 @@ namespace :dev do
                 password: Faker::Internet.password)
     end
 
-    
+    puts 'Generation posts...'
+
+    users = User.where(role: user_role)
+
+    users.each do |user| 
+      Post.create!(user: user,
+                   title: Faker::Lorem.word,
+                   category: 'security',
+                   description: Faker::Lorem.paragraph(sentence_count: 50),
+                   address: Faker::Address.full_address)
+    end
   end
 end
