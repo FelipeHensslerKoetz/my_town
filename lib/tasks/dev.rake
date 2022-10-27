@@ -42,10 +42,20 @@ namespace :dev do
 
     puts 'Genereating comments...'
 
-    Post.all.each do |post|
+    posts = Post.all
+
+    posts.each do |post|
       user = users.sample 
 
       Comment.create!(user: user, post: post, description: Faker::Lorem.paragraph(sentence_count: 3))
+    end
+
+    puts 'Generating reactions...'
+
+    posts.each do |post|
+      user = users.sample
+
+      Reaction.create!(post: post, user: user, upvote: [true, false].sample)
     end
   end
 end
