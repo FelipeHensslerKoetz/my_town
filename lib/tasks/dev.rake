@@ -57,5 +57,11 @@ namespace :dev do
 
       Reaction.create!(post: post, user: user, upvote: [true, false].sample)
     end
+
+    puts 'Generating projects...'
+
+    posts.each do |post|
+      Project.create!(post: post, events: {})
+    end
   end
 end
