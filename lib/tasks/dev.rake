@@ -39,5 +39,13 @@ namespace :dev do
                    description: Faker::Lorem.paragraph(sentence_count: 50),
                    address: Faker::Address.full_address)
     end
+
+    puts 'Genereating comments...'
+
+    Post.all.each do |post|
+      user = users.sample 
+
+      Comment.create!(user: user, post: post, description: Faker::Lorem.paragraph(sentence_count: 3))
+    end
   end
 end
